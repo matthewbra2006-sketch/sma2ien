@@ -1,0 +1,1456 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>اجتماع سمائيين (كروت الشباب)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f2f3f5;
+      --surface: #ffffff;
+      --ink: #1b2233;
+      --muted: #5f6878;
+      --line: #dde0e6;
+      --accent: #0f6b63;
+      --accent-ink: #ffffff;
+      --danger: #b3261e;
+      --ok: #1a7f4b;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #12151c;
+        --surface: #1b1f29;
+        --ink: #eceef3;
+        --muted: #9aa2b1;
+        --line: #2c3240;
+        --accent: #4fc3b5;
+        --accent-ink: #0c1512;
+        --danger: #f2837c;
+        --ok: #4cc38a;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #12151c;
+      --surface: #1b1f29;
+      --ink: #eceef3;
+      --muted: #9aa2b1;
+      --line: #2c3240;
+      --accent: #4fc3b5;
+      --accent-ink: #0c1512;
+      --danger: #f2837c;
+      --ok: #4cc38a;
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+    }
+
+    .head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin: 8px 0 2px;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin: 0 0 10px;
+    }
+
+    .sub {
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    .status {
+      font-size: .88rem;
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .status b {
+      color: var(--accent);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .tab {
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      padding: 8px 14px;
+    }
+
+    .tab.on {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .tile {
+      --c: var(--muted);
+      font: inherit;
+      color: inherit;
+      text-align: right;
+      cursor: pointer;
+      background: var(--surface);
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tile .band {
+      height: 10px;
+      background: linear-gradient(90deg, var(--c), color-mix(in srgb, var(--c) 55%, white), var(--c));
+    }
+
+    .tile .body {
+      padding: 10px 12px 12px;
+    }
+
+    .tile .count {
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .tile .name {
+      font-weight: 600;
+    }
+
+    .tile .disc {
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .tile[aria-pressed="true"] {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      align-items: center;
+    }
+
+    input[type=text],
+    input[type=search],
+    input[type=tel],
+    input[type=number],
+    input[type=password],
+    input[type=date],
+    select,
+    textarea {
+      font: inherit;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px 12px;
+      min-width: 0;
+    }
+
+    input[type=search] {
+      flex: 1 1 200px;
+    }
+
+    input[type=password] {
+      flex: 1 1 160px;
+      direction: ltr;
+    }
+
+    button.btn {
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      padding: 9px 14px;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+
+    button.danger {
+      color: var(--danger);
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .addrow {
+      display: grid;
+      grid-template-columns: 2fr 1.4fr 1.3fr 1.2fr auto;
+      gap: 8px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .row {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .row .who {
+      min-width: 0;
+      flex: 1 1 140px;
+    }
+
+    .row .who strong {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .pill {
+      font-size: .85rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 99px;
+      border: 1.5px solid var(--c, var(--line));
+      white-space: nowrap;
+    }
+
+    .flag {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--danger);
+      border: 1.5px solid var(--danger);
+      border-radius: 99px;
+      padding: 2px 8px;
+      white-space: nowrap;
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 28px 12px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin: 6px 0;
+    }
+
+    .chip {
+      font-size: .8rem;
+      padding: 2px 9px;
+      border-radius: 99px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .chip.ok {
+      border-color: var(--ok);
+      color: var(--ok);
+      font-weight: 600;
+    }
+
+    .arow {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 12px;
+    }
+
+    button.att {
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      min-width: 88px;
+      padding: 7px 10px;
+    }
+
+    button.att.on {
+      background: var(--ok);
+      border-color: var(--ok);
+      color: #fff;
+    }
+
+    button.att.off {
+      color: var(--danger);
+      border-color: var(--danger);
+    }
+
+    .cardset {
+      border-inline-start: 8px solid var(--c, var(--line));
+    }
+
+    .cardset .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .cardset label {
+      display: flex;
+      flex-direction: column;
+      font-size: .82rem;
+      color: var(--muted);
+      gap: 2px;
+    }
+
+    .cardset input[type=text] {
+      width: 100%;
+    }
+
+    .cardset input[type=number] {
+      width: 100%;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .5);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: calc(env(safe-area-inset-top, 0px) + 16px) 12px calc(env(safe-area-inset-bottom, 0px) + 16px);
+      overflow: auto;
+      z-index: 20;
+    }
+
+    .sheet {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 580px;
+      padding: 16px;
+    }
+
+    .sheet .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sheet .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .sheet .fields .full {
+      grid-column: 1 / -1;
+    }
+
+    .sheet label.f {
+      display: flex;
+      flex-direction: column;
+      font-size: .82rem;
+      color: var(--muted);
+      gap: 2px;
+    }
+
+    .warn {
+      border: 1.5px solid var(--danger);
+      background: color-mix(in srgb, var(--danger) 10%, transparent);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin: 8px 0;
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    .hist {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-height: 260px;
+      overflow: auto;
+      margin-top: 6px;
+    }
+
+    .hist .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px solid var(--line);
+      padding: 4px 0;
+      font-size: .92rem;
+    }
+
+    .hist .item button {
+      padding: 2px 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 90px;
+      direction: ltr;
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: .8rem;
+    }
+
+    /* view-only mode */
+    .ro .writer {
+      display: none !important;
+    }
+
+    @media (max-width: 620px) {
+      .addrow {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .addrow input:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .arow {
+        grid-template-columns: 1fr auto;
+      }
+
+      .arow .pill {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="ro">
+  <main>
+    <div class="head">
+      <div>
+        <h1>اجتماع سمائيين</h1>
+        <p class="sub">كروت الشباب: شوف كل واحد معاه كارت إيه.</p>
+      </div>
+      <button class="btn" id="authToggle" type="button" hidden>دخول الأدمن</button>
+    </div>
+    <p class="status" id="status" role="status"></p>
+
+    <section class="panel" id="authPanel" hidden>
+      <div class="bar" id="loginForm">
+        <input type="password" id="adminPass" placeholder="باسورد الأدمن" autocomplete="current-password">
+        <button class="btn" id="showPass" type="button" aria-label="إظهار الباسورد" title="إظهار الباسورد">👁</button>
+        <button class="btn primary" id="loginBtn" type="button">دخول</button>
+      </div>
+      <div class="bar" id="logoutRow" hidden>
+        <span class="muted">أنت داخل كأدمن</span>
+        <button class="btn" id="logoutBtn" type="button">خروج</button>
+      </div>
+      <div class="muted" id="authMsg" role="status"></div>
+    </section>
+
+    <nav class="tabs writer" id="tabs" aria-label="أقسام الأدمن">
+      <button class="tab on" type="button" data-tab="people">الشباب</button>
+      <button class="tab" type="button" data-tab="att">الحضور (الخميس)</button>
+      <button class="tab" type="button" data-tab="trips">الخروجات</button>
+      <button class="tab" type="button" data-tab="cards">إعدادات الكروت</button>
+      <button class="tab" type="button" data-tab="backup">نسخة احتياطية</button>
+    </nav>
+
+    <!-- ===== الشباب ===== -->
+    <section id="tab-people">
+      <div class="tiles" id="tiles" role="group" aria-label="فلتر حسب الكارت"></div>
+
+      <section class="panel writer" id="bdayPanel" hidden>
+        <h2>🎂 أعياد ميلاد الـ 30 يوم الجايين</h2>
+        <div id="bdayList" class="muted"></div>
+      </section>
+
+      <section class="panel writer">
+        <h2>إضافة شاب</h2>
+        <div class="addrow">
+          <input type="text" id="newName" placeholder="الاسم" autocomplete="off">
+          <input type="tel" id="newPhone" placeholder="التليفون (اختياري)" autocomplete="off">
+          <input type="date" id="newBday" aria-label="تاريخ الميلاد" title="تاريخ الميلاد">
+          <select id="newTier" aria-label="الكارت الحالي"></select>
+          <button class="btn primary" id="addBtn" type="button">إضافة</button>
+        </div>
+        <div class="muted" style="margin-top:6px">الكارت الحالي: سيبه Master للجديد، وغيّره بس للي معاه كارت فعلاً.
+        </div>
+      </section>
+
+      <div class="bar">
+        <input type="search" id="q" placeholder="ابحث بالاسم أو نوع الكارت (مثلاً: gold)" aria-label="بحث">
+      </div>
+      <div class="muted" id="resultInfo" style="margin-bottom:8px"></div>
+      <div class="list" id="list"></div>
+    </section>
+
+    <!-- ===== الحضور ===== -->
+    <section id="tab-att" class="writer" hidden>
+      <div class="panel">
+        <h2>حضور الخميس</h2>
+        <div class="bar">
+          <button class="btn" id="attNext" type="button" aria-label="الخميس اللي بعده">›</button>
+          <select id="attSel" aria-label="اختار الخميس"></select>
+          <button class="btn" id="attPrev" type="button" aria-label="الخميس اللي قبله">‹</button>
+        </div>
+        <div class="muted" id="attInfo" role="status"></div>
+      </div>
+      <div class="list" id="attList"></div>
+    </section>
+
+    <!-- ===== الخروجات ===== -->
+    <section id="tab-trips" class="writer" hidden>
+      <div class="panel">
+        <h2>خروجة الكارت مع الخدام</h2>
+        <p class="muted">كل كارت له خروجة واحدة بس. اللي خرج خروجة كارته مينفعش يخرج تاني، لازم ياخد الكارت اللي بعده
+          الأول.</p>
+        <div class="bar"><select id="tripTier" aria-label="اختار الكارت"></select></div>
+        <div class="muted" id="tripInfo" role="status"></div>
+      </div>
+      <div class="list" id="tripList"></div>
+    </section>
+
+    <!-- ===== إعدادات الكروت ===== -->
+    <section id="tab-cards" class="writer" hidden>
+      <p class="muted">العدّاد بيبدأ من الأول عند كل كارت جديد. الترقية أوتوماتيك أول ما الشروط تكمل.</p>
+      <div id="cardSettings"></div>
+      <div class="panel">
+        <h2>الحفاظ على كارت VIP</h2>
+        <label class="muted">كل كام خميس بنراجع الشروط؟ (مثلاً 8 = شهرين)
+          <input type="number" id="winInput" min="1" max="26" inputmode="numeric" style="width:90px">
+        </label>
+      </div>
+    </section>
+
+    <!-- ===== نسخة احتياطية ===== -->
+    <section id="tab-backup" class="writer" hidden>
+      <div class="panel">
+        <h2>نسخة احتياطية</h2>
+        <p class="muted">النسخة فيها كل الشباب وتاريخهم والإعدادات. احفظها في مكان آمن ومتبعتهاش لحد.</p>
+        <div class="bar">
+          <button class="btn" id="exportBtn" type="button">عمل نسخة</button>
+          <button class="btn" id="importBtn" type="button">استرجاع من النص</button>
+        </div>
+        <textarea id="backupBox" aria-label="نص النسخة الاحتياطية"
+          placeholder="هنا هيظهر نص النسخة، أو الصق نسخة قديمة عشان تسترجعها"></textarea>
+        <div class="muted" id="backupMsg" role="status"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="sheet" id="sheet"></div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script>
+    (function () {
+      /* ========= الصق إعدادات Firebase بتاعتك هنا (نفس اللي في النسخة القديمة) ========= */
+      var FIREBASE_CONFIG = {
+        apiKey: "AIzaSyDl7548L9TnGjMEQ0CGKaTM5JqiJKe-Gug",
+        authDomain: "sma2ien.firebaseapp.com",
+        projectId: "sma2ien",
+        appId: "1:423812524990:web:a17332c89adc10aef827ef"
+      };
+      /* إيميل حساب الأدمن (اللي هتعمله في Authentication). الأدمن بيدخل بالباسورد بس. */
+      var ADMIN_EMAIL = "admin@sma2ien.com";
+      /* ==================================================================================== */
+
+      var TYPES = [
+        ["meeting", "اجتماع"], ["mass", "قداس"], ["confession", "اعتراف"],
+        ["visitation", "افتقاد"], ["bible", "كتاب مقدس"]
+      ];
+      var LABEL = { meeting: "اجتماع", mass: "قداس", confession: "اعتراف", visitation: "افتقاد", bible: "كتاب مقدس", promote: "ترقية يدوية", demote: "تنزيل كارت" };
+      var ALIASES = {
+        master: ["ماستر", "master", "ازرق", "أزرق"],
+        gold: ["gold", "دهبي", "ذهبي", "جولد"],
+        platinum: ["platinum", "بلاتينيوم", "بلاتينيم"],
+        vip: ["vip", "في اي بي"]
+      };
+
+      function pad(n) { return (n < 10 ? "0" : "") + n; }
+      function isoUTC(d) { return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()); }
+      function todayStr() { var n = new Date(); return n.getFullYear() + "-" + pad(n.getMonth() + 1) + "-" + pad(n.getDate()); }
+
+      /* كل الخميسات من 1 أكتوبر 2026 لحد 30 سبتمبر 2027 */
+      var TH = [];
+      (function () {
+        var d = new Date(Date.UTC(2026, 9, 1));
+        var end = Date.UTC(2027, 8, 30);
+        while (d.getUTCDay() !== 4) d.setUTCDate(d.getUTCDate() + 1);
+        while (d.getTime() <= end) { TH.push(isoUTC(d)); d.setUTCDate(d.getUTCDate() + 7); }
+      })();
+      function thAfter(d, n) {
+        var i = 0;
+        while (i < TH.length && TH[i] <= d) i++;
+        var j = i + n - 1;
+        return j < TH.length ? TH[j] : "9999-12-31";
+      }
+      function dateLabel(iso) {
+        try {
+          return new Date(iso + "T00:00:00Z").toLocaleDateString("ar-EG-u-nu-latn", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+        } catch (e) { return iso; }
+      }
+
+      function defaultLadder() {
+        return {
+          window: 8,
+          tiers: [
+            { id: "master", name: "Master", color: "#2563eb", discount: 0, reward: "كارت البداية", req: { meeting: 0, mass: 0, confession: 0, visitation: 0, bible: 0 } },
+            { id: "gold", name: "Gold", color: "#c99a1e", discount: 10, reward: "خصم 10% على كل الخروجات + خروجة بمناسبة الكارت", req: { meeting: 6, mass: 1, confession: 1, visitation: 0, bible: 0 } },
+            { id: "platinum", name: "Platinum", color: "#7d8da1", discount: 25, reward: "خصم 25% على الرحلات والأمسيات والمؤتمرات + خروجة بمناسبة الكارت", req: { meeting: 6, mass: 1, confession: 1, visitation: 1, bible: 0 } },
+            { id: "vip", name: "VIP", color: "#7a4fb0", discount: 50, reward: "خصم 50% على جميع الرحلات والأمسيات والمؤتمرات + خروجة بمناسبة الكارت", req: { meeting: 8, mass: 1, confession: 1, visitation: 1, bible: 1 } }
+          ]
+        };
+      }
+      function normLadder(x) {
+        var d = defaultLadder();
+        if (!x || !Array.isArray(x.tiers) || x.tiers.length !== d.tiers.length) return d;
+        var out = { window: Math.max(1, Math.min(26, parseInt(x.window, 10) || 8)), tiers: [] };
+        d.tiers.forEach(function (dt, i) {
+          var t = x.tiers[i] || {};
+          var req = {};
+          TYPES.forEach(function (ty) {
+            var k = ty[0];
+            var v = t.req ? parseInt(t.req[k], 10) : NaN;
+            req[k] = isNaN(v) ? dt.req[k] : Math.max(0, v);
+          });
+          var disc = parseInt(t.discount, 10);
+          out.tiers.push({
+            id: dt.id, color: dt.color,
+            name: String(t.name || dt.name),
+            discount: isNaN(disc) ? dt.discount : Math.max(0, Math.min(100, disc)),
+            reward: t.reward !== undefined ? String(t.reward) : dt.reward,
+            req: req
+          });
+        });
+        return out;
+      }
+
+      var state = { ladder: defaultLadder(), members: [], priv: {} };
+      var ready = { members: false, priv: false };
+      var filter = "all";
+      var query = "";
+      var armed = {};
+      var mode = "readonly"; // readonly (شباب) | shared (أدمن)
+      var dbRef = null, auth = null, unsubPriv = null;
+      var chain = {};
+      var activeTab = "people";
+      var openId = null;
+      var attDate = "";
+
+      /* ---------- helpers ---------- */
+      function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+      function clone(x) { return JSON.parse(JSON.stringify(x)); }
+      function $(id) { return document.getElementById(id); }
+      function norm(s) {
+        return String(s || "").toLowerCase().trim()
+          .replace(/[\u064B-\u0652\u0640]/g, "")
+          .replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه").replace(/ذ/g, "د");
+      }
+      function h(tag, attrs) {
+        var e = document.createElement(tag);
+        if (attrs) for (var k in attrs) {
+          if (k === "text") e.textContent = attrs[k];
+          else if (k === "class") e.className = attrs[k];
+          else if (k.slice(0, 2) === "on") e.addEventListener(k.slice(2), attrs[k]);
+          else e.setAttribute(k, attrs[k]);
+        }
+        for (var i = 2; i < arguments.length; i++) if (arguments[i]) e.appendChild(arguments[i]);
+        return e;
+      }
+      function arm(key, btn, idleText, action) {
+        if (armed[key]) { clearTimeout(armed[key]); delete armed[key]; action(); return; }
+        btn.textContent = "متأكد؟";
+        armed[key] = setTimeout(function () { delete armed[key]; btn.textContent = idleText; }, 3000);
+      }
+      function configured() {
+        return !!(window.firebase && FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey.indexOf("PASTE") !== 0);
+      }
+      function tiers() { return state.ladder.tiers; }
+      function tierIndex(id) {
+        for (var i = 0; i < tiers().length; i++) if (tiers()[i].id === id) return i;
+        return 0;
+      }
+      function tierOf(id) { return tiers()[tierIndex(id)]; }
+      function memberById(id) {
+        for (var i = 0; i < state.members.length; i++) if (state.members[i].id === id) return state.members[i];
+        return null;
+      }
+      function tierWords(id) {
+        var t = tierOf(id);
+        return [t.name].concat(ALIASES[t.id] || []).map(norm).join(" ");
+      }
+      function pillFor(t) {
+        var p = h("span", { class: "pill", text: t.discount ? t.name + " • " + t.discount + "%" : t.name });
+        p.style.setProperty("--c", t.color);
+        return p;
+      }
+
+      /* ---------- منطق الكروت (أوتوماتيك) ---------- */
+      function emptyCnt() { return { meeting: 0, mass: 0, confession: 0, visitation: 0, bible: 0 }; }
+      function met(cnt, req) {
+        for (var i = 0; i < TYPES.length; i++) { var k = TYPES[i][0]; if ((cnt[k] || 0) < (req[k] || 0)) return false; }
+        return true;
+      }
+      function hasReq(req) {
+        for (var i = 0; i < TYPES.length; i++) if ((req[TYPES[i][0]] || 0) > 0) return true;
+        return false;
+      }
+
+      function computeCard(p, today) {
+        var L = state.ladder, T = L.tiers, top = T.length - 1;
+        var ev = (p && p.ev) || {};
+        var idx = Math.min(top, Math.max(0, (p && typeof p.base === "number") ? p.base : 0));
+        var cnt = emptyCnt(), since = "", autoDown = [];
+        var ws = idx === top ? "2026-09-30" : "";
+        function winEnd(d) { return thAfter(d, L.window); }
+        function reset(d) { cnt = emptyCnt(); since = d; ws = d; }
+        function roll(limit) {
+          var guard = 0;
+          while (idx === top && ws && winEnd(ws) < limit && guard++ < 60) {
+            var end = winEnd(ws);
+            if (met(cnt, T[idx].req)) { ws = end; cnt = emptyCnt(); }
+            else { idx--; reset(end); autoDown.push(end); }
+          }
+        }
+        Object.keys(ev).sort().forEach(function (d) {
+          var list = Array.isArray(ev[d]) ? ev[d] : [];
+          if (!list.length) return;
+          roll(d);
+          list.forEach(function (t) {
+            if (t === "promote") { if (idx < top) { idx++; reset(d); } }
+            else if (t === "demote") { if (idx > 0) { idx--; reset(d); } }
+            else if (cnt[t] !== undefined) cnt[t]++;
+          });
+          if (idx < top) {
+            var nx = T[idx + 1];
+            if (hasReq(nx.req) && met(cnt, nx.req)) { idx++; reset(d); }
+          }
+        });
+        roll(today);
+        var windowEnd = (idx === top && ws) ? winEnd(ws) : "";
+        var atRisk = false;
+        if (windowEnd && windowEnd < "9999" && windowEnd >= today && !met(cnt, T[idx].req)) {
+          var left = Math.round((new Date(windowEnd + "T00:00:00Z") - new Date(today + "T00:00:00Z")) / 86400000);
+          atRisk = left <= 14;
+        }
+        return {
+          idx: idx, tier: T[idx], next: idx < top ? T[idx + 1] : null,
+          cnt: cnt, since: since, atRisk: atRisk, autoDown: autoDown,
+          windowEnd: windowEnd
+        };
+      }
+      function cardOf(m) { return computeCard(state.priv[m.id] || null, todayStr()); }
+
+      /* ---------- الحفظ ---------- */
+      function flash(text) { $("status").textContent = text; }
+      function queue(key, fn) {
+        chain[key] = (chain[key] || Promise.resolve()).then(fn).catch(function (e) {
+          if (e && e.code === "permission-denied") flash("مش مسموحلك تعدّل. الحساب ده مش أدمن (اتأكد من الـ UID في الـ Rules).");
+          else flash("حصلت مشكلة في الحفظ. جرّب تاني بعد شوية.");
+        });
+      }
+      function persistMember(m) {
+        if (mode !== "shared") return;
+        queue("m" + m.id, function () { return dbRef.doc("members/" + m.id).set({ name: m.name, tier: m.tier }); });
+      }
+      function persistRemove(id) {
+        if (mode !== "shared") return;
+        queue("m" + id, function () { return dbRef.doc("members/" + id).delete(); });
+        queue("p" + id, function () { return dbRef.doc("private/" + id).delete(); });
+      }
+      function persistLadder() {
+        if (mode !== "shared") return;
+        queue("ladder", function () { return dbRef.doc("config/ladder").set(clone(state.ladder)); });
+      }
+      function tierIndexOfMember(id) { var m = memberById(id); return m ? tierIndex(m.tier) : 0; }
+
+      function savePriv(id, patch) {
+        if (mode !== "shared") return;
+        var p = state.priv[id] || { phone: "", birthday: "", ev: {}, outings: {} };
+        var body = {};
+        Object.keys(patch).forEach(function (k) { body[k] = patch[k]; });
+        if (typeof p.base !== "number") body.base = tierIndexOfMember(id);
+        var merged = { phone: p.phone, birthday: p.birthday, base: p.base, ev: p.ev || {}, outings: p.outings || {} };
+        if (body.phone !== undefined) merged.phone = body.phone;
+        if (body.birthday !== undefined) merged.birthday = body.birthday;
+        if (body.base !== undefined) merged.base = body.base;
+        if (body.ev) merged.ev = Object.assign({}, merged.ev, body.ev);
+        if (body.outings) merged.outings = Object.assign({}, merged.outings, body.outings);
+        state.priv[id] = merged;
+        queue("p" + id, function () { return dbRef.doc("private/" + id).set(body, { merge: true }); });
+        var m = memberById(id);
+        if (m) syncMember(m);
+        render();
+      }
+      function syncMember(m) {
+        var p = state.priv[m.id];
+        if (!p) return;
+        var c = computeCard(p, todayStr());
+        if (c.tier.id !== m.tier) { m.tier = c.tier.id; persistMember(m); }
+      }
+      function syncAll() {
+        if (mode !== "shared" || !ready.priv || !ready.members) return;
+        state.members.forEach(syncMember);
+      }
+
+      function eventsOf(id, date) {
+        var p = state.priv[id];
+        return ((p && p.ev && p.ev[date]) || []).slice();
+      }
+      function toggleEvent(id, date, type) {
+        var arr = eventsOf(id, date), i = arr.indexOf(type);
+        if (i > -1) arr.splice(i, 1); else arr.push(type);
+        var ev = {}; ev[date] = arr; savePriv(id, { ev: ev });
+      }
+      function addEvent(id, date, type) {
+        var arr = eventsOf(id, date);
+        if (type !== "promote" && type !== "demote" && arr.indexOf(type) > -1) return;
+        arr.push(type);
+        var ev = {}; ev[date] = arr; savePriv(id, { ev: ev });
+      }
+      function outingDate(id, tierId) {
+        var p = state.priv[id];
+        return (p && p.outings && p.outings[tierId]) || "";
+      }
+      function setOuting(id, tierId, date) {
+        var o = {}; o[tierId] = date;
+        savePriv(id, { outings: o });
+      }
+      function removeEvent(id, date, type) {
+        var arr = eventsOf(id, date), i = arr.indexOf(type);
+        if (i < 0) return;
+        arr.splice(i, 1);
+        var ev = {}; ev[date] = arr; savePriv(id, { ev: ev });
+      }
+
+      /* ---------- Firebase ---------- */
+      function setMode(m) {
+        mode = m;
+        document.body.classList.toggle("ro", m !== "shared");
+        var st = $("status");
+        st.textContent = "";
+        if (!dbRef) st.textContent = "Firebase لسه مش متضبط في الملف.";
+        else if (m === "shared") { st.appendChild(h("b", { text: "أدمن ✓ " })); st.appendChild(document.createTextNode("أي تعديل بيظهر على كل الأجهزة.")); }
+        else st.textContent = "عرض فقط. التحديثات بتظهر لحظياً.";
+        if (m !== "shared") { if (openId) closeModal(); if (activeTab !== "people") showTab("people"); }
+      }
+      function updateAuthUI(user) {
+        $("authToggle").hidden = false;
+        $("authToggle").textContent = user ? "الأدمن ✓" : "دخول الأدمن";
+        $("loginForm").hidden = !!user;
+        $("logoutRow").hidden = !user;
+      }
+      function stopPriv() {
+        if (unsubPriv) { unsubPriv(); unsubPriv = null; }
+        state.priv = {}; ready.priv = false;
+      }
+      function startPriv() {
+        stopPriv();
+        unsubPriv = dbRef.collection("private").onSnapshot(function (s) {
+          var o = {};
+          s.docs.forEach(function (d) {
+            var v = d.data() || {}, ev = {};
+            if (v.ev && typeof v.ev === "object") Object.keys(v.ev).forEach(function (k) {
+              if (Array.isArray(v.ev[k])) ev[k] = v.ev[k].filter(function (x) { return typeof x === "string"; });
+            });
+            var out = {};
+            if (v.outings && typeof v.outings === "object") Object.keys(v.outings).forEach(function (k) {
+              if (typeof v.outings[k] === "string" && v.outings[k]) out[k] = v.outings[k];
+            });
+            o[d.id] = { phone: String(v.phone || ""), birthday: String(v.birthday || ""), base: typeof v.base === "number" ? v.base : undefined, ev: ev, outings: out };
+          });
+          state.priv = o; ready.priv = true;
+          syncAll(); render();
+        }, function () { flash("مش قادر أقرأ بيانات الأدمن. اتأكد إن الـ Rules فيها private وإن الـ UID صح."); });
+      }
+
+      function initShared() {
+        if (!configured()) { setMode("readonly"); render(); return; }
+        try {
+          firebase.initializeApp(FIREBASE_CONFIG);
+          dbRef = firebase.firestore();
+          auth = firebase.auth();
+        } catch (e) { setMode("readonly"); return; }
+        setMode("readonly");
+        updateAuthUI(null);
+
+        dbRef.doc("config/ladder").onSnapshot(function (s) {
+          if (s.exists) state.ladder = normLadder(s.data());
+          render(); syncAll();
+        }, function () { });
+        dbRef.collection("members").onSnapshot(function (s) {
+          state.members = s.docs.map(function (d) {
+            var v = d.data() || {};
+            return { id: d.id, name: String(v.name || ""), tier: v.tier || "master" };
+          });
+          ready.members = true;
+          syncAll(); render();
+        }, function () { flash("انقطع الاتصال. حدّث الصفحة."); });
+
+        auth.onAuthStateChanged(function (user) {
+          if (user) {
+            setMode("shared"); updateAuthUI(user);
+            startPriv();
+            dbRef.doc("config/ladder").get().then(function (s) { if (!s.exists) persistLadder(); }).catch(function () { });
+          } else {
+            stopPriv(); setMode("readonly"); updateAuthUI(null);
+          }
+          render();
+        });
+      }
+
+      $("authToggle").addEventListener("click", function () {
+        var p = $("authPanel");
+        p.hidden = !p.hidden;
+        if (!p.hidden && auth && !auth.currentUser) $("adminPass").focus();
+      });
+      $("loginBtn").addEventListener("click", function () {
+        var m = $("authMsg"), pass = $("adminPass").value;
+        if (!auth) { m.textContent = "Firebase مش متضبط."; return; }
+        if (ADMIN_EMAIL.indexOf("PASTE") === 0) { m.textContent = "لسه ما كتبتش إيميل الأدمن في الكود (ADMIN_EMAIL)."; return; }
+        if (!pass) { m.textContent = "اكتب الباسورد."; return; }
+        m.textContent = "بيدخل...";
+        auth.signInWithEmailAndPassword(ADMIN_EMAIL, pass).then(function () {
+          m.textContent = ""; $("adminPass").value = ""; $("authPanel").hidden = true;
+        }).catch(function (e) {
+          var c = (e && e.code) || "";
+          var t = "حصلت مشكلة في الدخول (" + c + ").";
+          if (c === "auth/invalid-credential" || c === "auth/wrong-password" || c === "auth/invalid-login-credentials") t = "الباسورد غلط. اتأكد من لغة الكيبورد وCaps Lock، أو اضغط 👁 تشوف اللي كتبته.";
+          else if (c === "auth/user-not-found") t = "حساب الأدمن مش موجود في Firebase.";
+          else if (c === "auth/network-request-failed") t = "مفيش اتصال بـ Firebase. اتأكد من النت أو من إضافات المتصفح.";
+          else if (c === "auth/too-many-requests") t = "محاولات غلط كتير. استنى شوية وجرّب تاني.";
+          else if (c === "auth/unauthorized-domain") t = "الدومين ده مش مضاف في Firebase (Authorized domains).";
+          else if (c === "auth/invalid-api-key") t = "الـ apiKey في الكود غلط.";
+          m.textContent = t;
+        });
+      });
+      $("showPass").addEventListener("click", function () {
+        var i = $("adminPass");
+        i.type = i.type === "password" ? "text" : "password";
+      });
+      $("adminPass").addEventListener("keydown", function (e) { if (e.key === "Enter") $("loginBtn").click(); });
+      $("logoutBtn").addEventListener("click", function () { auth.signOut(); $("authPanel").hidden = true; });
+
+      /* ---------- التابات ---------- */
+      function showTab(name) {
+        activeTab = name;
+        ["people", "att", "trips", "cards", "backup"].forEach(function (t) { $("tab-" + t).hidden = (t !== name); });
+        Array.prototype.forEach.call(document.querySelectorAll("#tabs .tab"), function (b) { b.classList.toggle("on", b.getAttribute("data-tab") === name); });
+        render();
+      }
+      Array.prototype.forEach.call(document.querySelectorAll("#tabs .tab"), function (b) {
+        b.addEventListener("click", function () { showTab(b.getAttribute("data-tab")); });
+      });
+
+      /* ---------- الشباب ---------- */
+      function renderTiles() {
+        var box = $("tiles");
+        box.textContent = "";
+        var all = h("button", { class: "tile", type: "button", "aria-pressed": String(filter === "all"), onclick: function () { filter = "all"; render(); } },
+          h("div", { class: "band" }),
+          h("div", { class: "body" }, h("div", { class: "count", text: String(state.members.length) }), h("div", { class: "name", text: "الكل" })));
+        all.style.setProperty("--c", "var(--accent)");
+        box.appendChild(all);
+        tiers().forEach(function (t) {
+          var n = state.members.filter(function (m) { return tierOf(m.tier).id === t.id; }).length;
+          var b = h("button", { class: "tile", type: "button", "aria-pressed": String(filter === t.id), onclick: function () { filter = t.id; render(); } },
+            h("div", { class: "band" }),
+            h("div", { class: "body" },
+              h("div", { class: "count", text: String(n) }),
+              h("div", { class: "name", text: t.name }),
+              h("div", { class: "disc", text: t.discount ? "خصم " + t.discount + "%" : "بدون خصم" })));
+          b.style.setProperty("--c", t.color);
+          box.appendChild(b);
+        });
+      }
+
+      function renderBirthdays() {
+        var panel = $("bdayPanel");
+        if (mode !== "shared") { panel.hidden = true; return; }
+        var today = todayStr(), t0 = new Date(today + "T00:00:00Z"), list = [];
+        state.members.forEach(function (m) {
+          var p = state.priv[m.id];
+          if (!p || !p.birthday) return;
+          var parts = p.birthday.split("-");
+          if (parts.length !== 3) return;
+          var mo = +parts[1] - 1, da = +parts[2], y = t0.getUTCFullYear();
+          var n = new Date(Date.UTC(y, mo, da));
+          if (n < t0) n = new Date(Date.UTC(y + 1, mo, da));
+          var days = Math.round((n - t0) / 86400000);
+          if (days <= 30) list.push({ name: m.name, days: days, d: da, mo: mo + 1 });
+        });
+        list.sort(function (a, b) { return a.days - b.days; });
+        panel.hidden = false;
+        var box = $("bdayList");
+        box.textContent = "";
+        if (!list.length) { box.textContent = "مفيش أعياد ميلاد قريبة."; return; }
+        list.forEach(function (x) {
+          box.appendChild(h("div", { text: x.name + " — " + x.d + "/" + x.mo + (x.days === 0 ? " (النهارده 🎉)" : x.days === 1 ? " (بكرة)" : " (بعد " + x.days + " يوم)") }));
+        });
+      }
+
+      function fillTierSelect(sel, value) {
+        sel.textContent = "";
+        tiers().forEach(function (t) { sel.appendChild(h("option", { value: t.id, text: t.name })); });
+        sel.value = value || tiers()[0].id;
+      }
+
+      function renderList() {
+        var box = $("list");
+        box.textContent = "";
+        var q = norm(query);
+        var items = state.members.filter(function (m) {
+          if (filter !== "all" && tierOf(m.tier).id !== filter) return false;
+          if (!q) return true;
+          var ph = (mode === "shared" && state.priv[m.id]) ? state.priv[m.id].phone : "";
+          return norm(m.name).indexOf(q) > -1 || tierWords(m.tier).indexOf(q) > -1 || (ph && ph.indexOf(q) > -1);
+        });
+        var info = $("resultInfo");
+        info.textContent = state.members.length ? (filter === "all" ? "الكل" : tierOf(filter).name) + ": " + items.length : "";
+        if (!items.length) {
+          box.appendChild(h("div", { class: "empty", text: state.members.length ? "مفيش نتايج بالفلتر ده." : (mode === "shared" ? "لسه ماضفتش حد. اكتب الاسم فوق واضغط إضافة." : "لسه مفيش بيانات.") }));
+          return;
+        }
+        items.sort(function (a, b) { return a.name.localeCompare(b.name, "ar"); });
+        items.forEach(function (m) {
+          var row = h("div", { class: "row" }, h("div", { class: "who" }, h("strong", { text: m.name })), pillFor(tierOf(m.tier)));
+          if (mode === "shared") {
+            var c = cardOf(m);
+            if (c.atRisk) row.appendChild(h("span", { class: "flag writer", text: "⚠️ معرّض للنزول" }));
+            if (c.idx > 0) {
+              var went = outingDate(m.id, c.tier.id);
+              row.appendChild(h("span", { class: "chip writer" + (went ? " ok" : ""), text: went ? "خرج ✓" : "مستني الخروجة" }));
+            }
+            row.appendChild(h("button", { class: "btn writer", type: "button", text: "التفاصيل", onclick: function () { openModal(m.id); } }));
+          }
+          box.appendChild(row);
+        });
+      }
+
+      function addMember() {
+        var n = $("newName");
+        var name = n.value.trim();
+        if (!name) { n.focus(); return; }
+        var m = { id: uid(), name: name, tier: $("newTier").value };
+        state.members.push(m);
+        persistMember(m);
+        savePriv(m.id, { phone: $("newPhone").value.trim(), birthday: $("newBday").value || "", ev: {} });
+        n.value = ""; $("newPhone").value = ""; $("newBday").value = "";
+        $("newTier").value = tiers()[0].id;
+        render(); n.focus();
+      }
+      $("addBtn").addEventListener("click", addMember);
+      $("newName").addEventListener("keydown", function (e) { if (e.key === "Enter") addMember(); });
+      $("q").addEventListener("input", function (e) { query = e.target.value; renderList(); });
+
+      /* ---------- تفاصيل الشاب (أدمن) ---------- */
+      function closeModal() { openId = null; $("modal").hidden = true; $("sheet").textContent = ""; }
+      $("modal").addEventListener("click", function (e) { if (e.target === $("modal")) closeModal(); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && openId) closeModal(); });
+
+      function openModal(id) {
+        var m = memberById(id);
+        if (!m || mode !== "shared") return;
+        openId = id;
+        var p = state.priv[id] || { phone: "", birthday: "", ev: {} };
+        var sheet = $("sheet");
+        sheet.textContent = "";
+
+        var title = h("h2", { text: m.name });
+        title.id = "mTitle";
+        sheet.appendChild(h("div", { class: "top" }, title, h("button", { class: "btn", type: "button", text: "إغلاق", onclick: closeModal })));
+
+        var nameIn = h("input", { type: "text", value: m.name, "aria-label": "الاسم" });
+        var phIn = h("input", { type: "tel", value: p.phone || "", "aria-label": "التليفون" });
+        var bdIn = h("input", { type: "date", value: p.birthday || "", "aria-label": "تاريخ الميلاد" });
+        var saveBtn = h("button", { class: "btn primary", type: "button", text: "حفظ البيانات" });
+        saveBtn.addEventListener("click", function () {
+          var nm = nameIn.value.trim();
+          if (nm && nm !== m.name) { m.name = nm; persistMember(m); }
+          savePriv(m.id, { phone: phIn.value.trim(), birthday: bdIn.value || "" });
+          saveBtn.textContent = "اتحفظ ✓";
+          setTimeout(function () { saveBtn.textContent = "حفظ البيانات"; }, 1500);
+        });
+        sheet.appendChild(h("div", { class: "fields" },
+          h("label", { class: "f full" }, document.createTextNode("الاسم"), nameIn),
+          h("label", { class: "f" }, document.createTextNode("التليفون"), phIn),
+          h("label", { class: "f" }, document.createTextNode("تاريخ الميلاد"), bdIn),
+          h("div", { class: "full" }, saveBtn)));
+
+        sheet.appendChild(h("div", { id: "mDyn" }));
+
+        var typeSel = h("select", { "aria-label": "نوع النشاط" });
+        TYPES.forEach(function (ty) { typeSel.appendChild(h("option", { value: ty[0], text: ty[1] })); });
+        var dateIn = h("input", { type: "date", value: todayStr(), "aria-label": "التاريخ" });
+        var addBtn = h("button", { class: "btn primary", type: "button", text: "إضافة للتاريخ" });
+        addBtn.addEventListener("click", function () { if (dateIn.value) addEvent(m.id, dateIn.value, typeSel.value); });
+        sheet.appendChild(h("h2", { text: "تسجيل نشاط", style: "margin-top:14px" }));
+        sheet.appendChild(h("div", { class: "bar" }, typeSel, dateIn, addBtn));
+
+        var del = h("button", { class: "btn danger", type: "button", text: "حذف الشاب" });
+        del.addEventListener("click", function () {
+          arm("dm" + m.id, del, "حذف الشاب", function () {
+            state.members = state.members.filter(function (x) { return x.id !== m.id; });
+            delete state.priv[m.id];
+            persistRemove(m.id); closeModal(); render();
+          });
+        });
+        sheet.appendChild(h("div", { style: "margin-top:14px" }, del));
+
+        $("modal").hidden = false;
+        renderModalDyn();
+      }
+
+      function reqChips(cnt, req) {
+        var wrap = h("div", { class: "chips" });
+        TYPES.forEach(function (ty) {
+          var need = req[ty[0]] || 0;
+          if (!need) return;
+          var got = cnt[ty[0]] || 0;
+          wrap.appendChild(h("span", { class: "chip" + (got >= need ? " ok" : ""), text: ty[1] + " " + Math.min(got, need) + "/" + need }));
+        });
+        return wrap;
+      }
+
+      function renderModalDyn() {
+        var box = $("mDyn");
+        if (!box) return;
+        var m = memberById(openId);
+        if (!m) { closeModal(); return; }
+        box.textContent = "";
+        var p = state.priv[m.id] || null;
+        var c = computeCard(p, todayStr());
+        var t = c.tier;
+
+        box.appendChild(h("h2", { text: "الكارت الحالي", style: "margin-top:10px" }));
+        var line = h("div", { class: "bar" }, pillFor(t));
+        if (t.reward) line.appendChild(h("span", { class: "muted", text: t.reward }));
+        box.appendChild(line);
+        if (c.since) box.appendChild(h("div", { class: "muted", text: "من: " + dateLabel(c.since) }));
+
+        if (c.next) {
+          box.appendChild(h("div", { class: "muted", text: "للترقية لـ " + c.next.name + ":" }));
+          box.appendChild(reqChips(c.cnt, c.next.req));
+        } else {
+          box.appendChild(h("div", { class: "muted", text: "شروط الحفاظ على الكارت (كل " + state.ladder.window + " خميس):" }));
+          box.appendChild(reqChips(c.cnt, t.req));
+          if (c.windowEnd && c.windowEnd < "9999") box.appendChild(h("div", { class: "muted", text: "الفترة الحالية بتخلص: " + dateLabel(c.windowEnd) }));
+        }
+        if (c.atRisk) {
+          box.appendChild(h("div", { class: "warn", text: "⚠️ لو ماحققش شروط الحفاظ لحد " + dateLabel(c.windowEnd) + " هينزل تلقائياً لـ " + tiers()[c.idx - 1].name + "." }));
+        }
+        if (c.autoDown.length) {
+          box.appendChild(h("div", { class: "muted", text: "آخر نزول تلقائي: " + dateLabel(c.autoDown[c.autoDown.length - 1]) }));
+        }
+        var act = h("div", { class: "bar" });
+        if (c.next) act.appendChild(h("button", { class: "btn", type: "button", text: "ترقية يدوية", onclick: function () { addEvent(m.id, todayStr(), "promote"); } }));
+        if (c.idx > 0) act.appendChild(h("button", { class: "btn danger", type: "button", text: "تنزيل يدوي", onclick: function () { addEvent(m.id, todayStr(), "demote"); } }));
+        box.appendChild(act);
+
+        if (c.idx > 0) {
+          var wentOn = outingDate(m.id, t.id);
+          box.appendChild(h("h2", { text: "خروجة " + t.name, style: "margin-top:14px" }));
+          if (wentOn) {
+            box.appendChild(h("div", { class: "warn", text: "🚫 خرج خروجة " + t.name + " يوم " + dateLabel(wentOn) + ". مينفعش يخرج تاني" + (c.next ? " لحد ما ياخد " + c.next.name + "." : ".") }));
+            var undo = h("button", { class: "btn danger", type: "button", text: "إلغاء التسجيل (لو غلط)" });
+            undo.addEventListener("click", function () { arm("uo" + m.id + t.id, undo, "إلغاء التسجيل (لو غلط)", function () { setOuting(m.id, t.id, ""); }); });
+            box.appendChild(undo);
+          } else {
+            box.appendChild(h("div", { class: "muted", text: "لسه ما خرجش خروجة " + t.name + "." }));
+            var go = h("button", { class: "btn primary", type: "button", text: "سجّل إنه خرج خروجة " + t.name });
+            go.addEventListener("click", function () { arm("go" + m.id + t.id, go, "سجّل إنه خرج خروجة " + t.name, function () { setOuting(m.id, t.id, todayStr()); }); });
+            box.appendChild(go);
+          }
+        }
+
+        var ev = (p && p.ev) || {}, total = emptyCnt(), items = [];
+        Object.keys(ev).forEach(function (d) {
+          (ev[d] || []).forEach(function (ty) { if (total[ty] !== undefined) total[ty]++; items.push({ d: d, t: ty }); });
+        });
+        items.sort(function (a, b) { return a.d < b.d ? 1 : a.d > b.d ? -1 : 0; });
+        box.appendChild(h("h2", { text: "السجل الكامل", style: "margin-top:14px" }));
+        var tot = h("div", { class: "chips" });
+        TYPES.forEach(function (ty) { tot.appendChild(h("span", { class: "chip", text: ty[1] + ": " + total[ty[0]] })); });
+        box.appendChild(tot);
+        var oList = tiers().filter(function (x) { return outingDate(m.id, x.id); });
+        if (oList.length) box.appendChild(h("div", { class: "muted", text: "الخروجات: " + oList.map(function (x) { return x.name + " (" + outingDate(m.id, x.id) + ")"; }).join(" • ") }));
+        var hist = h("div", { class: "hist" });
+        if (!items.length) hist.appendChild(h("div", { class: "muted", text: "لسه مفيش سجل." }));
+        items.forEach(function (it) {
+          hist.appendChild(h("div", { class: "item" },
+            h("span", { text: dateLabel(it.d) + " — " + (LABEL[it.t] || it.t) }),
+            h("button", { class: "btn danger", type: "button", "aria-label": "حذف", text: "×", onclick: function () { removeEvent(m.id, it.d, it.t); } })));
+        });
+        box.appendChild(hist);
+        var mt = $("mTitle"); if (mt) mt.textContent = m.name;
+      }
+
+      /* ---------- الحضور ---------- */
+      function initAttendanceControls() {
+        var sel = $("attSel");
+        TH.forEach(function (d) { sel.appendChild(h("option", { value: d, text: dateLabel(d) })); });
+        var t = todayStr(), last = TH[0];
+        TH.forEach(function (d) { if (d <= t) last = d; });
+        attDate = last; sel.value = attDate;
+        sel.addEventListener("change", function () { attDate = sel.value; renderAtt(); });
+        $("attPrev").addEventListener("click", function () { var i = TH.indexOf(attDate); if (i > 0) { attDate = TH[i - 1]; sel.value = attDate; renderAtt(); } });
+        $("attNext").addEventListener("click", function () { var i = TH.indexOf(attDate); if (i < TH.length - 1) { attDate = TH[i + 1]; sel.value = attDate; renderAtt(); } });
+      }
+      function renderAtt() {
+        var box = $("attList");
+        box.textContent = "";
+        if (mode !== "shared") return;
+        var today = todayStr(), past = attDate <= today, present = 0;
+        var list = state.members.slice().sort(function (a, b) { return a.name.localeCompare(b.name, "ar"); });
+        list.forEach(function (m) {
+          var on = eventsOf(m.id, attDate).indexOf("meeting") > -1;
+          if (on) present++;
+          var btn = h("button", { class: "att" + (on ? " on" : (past ? " off" : "")), type: "button", text: on ? "✓ حضر" : (past ? "✗ غاب" : "—") });
+          btn.addEventListener("click", function () { toggleEvent(m.id, attDate, "meeting"); });
+          box.appendChild(h("div", { class: "arow" }, h("strong", { text: m.name }), pillFor(tierOf(m.tier)), btn));
+        });
+        $("attInfo").textContent = list.length ? "حضر " + present + " من " + list.length + (past ? "" : " (الخميس ده لسه ما جاش)") : "ضيف شباب الأول من تاب الشباب.";
+        if (!list.length) box.appendChild(h("div", { class: "empty", text: "مفيش شباب لسه." }));
+      }
+
+      /* ---------- الخروجات ---------- */
+      var tripMsg = "";
+      function fillTripSelect() {
+        var sel = $("tripTier"), cur = sel.value;
+        sel.textContent = "";
+        tiers().forEach(function (t, i) { if (i > 0) sel.appendChild(h("option", { value: t.id, text: "خروجة " + t.name })); });
+        sel.value = cur || tiers()[1].id;
+        if (!sel.value) sel.value = tiers()[1].id;
+      }
+      $("tripTier").addEventListener("change", function () { tripMsg = ""; renderTrips(); });
+      function renderTrips() {
+        var box = $("tripList");
+        box.textContent = "";
+        if (mode !== "shared") return;
+        var sel = $("tripTier");
+        if (document.activeElement !== sel) fillTripSelect();
+        var tid = sel.value, T = tierOf(tid), nextT = tiers()[tierIndex(tid) + 1] || null;
+        var list = state.members.filter(function (m) { return tierOf(m.tier).id === tid; })
+          .sort(function (a, b) { return a.name.localeCompare(b.name, "ar"); });
+        var wentCount = 0;
+        list.forEach(function (m) {
+          var d = outingDate(m.id, tid);
+          if (d) wentCount++;
+          var btn = h("button", { class: "att" + (d ? " on" : ""), type: "button", text: d ? "✓ خرج" : "سجّل إنه خرج" });
+          btn.addEventListener("click", function () {
+            if (d) {
+              tripMsg = "🚫 " + m.name + " خرج خروجة " + T.name + " يوم " + dateLabel(d) + ". مينفعش يخرج تاني" + (nextT ? "، لازم ياخد " + nextT.name + " الأول." : ".");
+              renderTrips();
+              return;
+            }
+            arm("t" + m.id + tid, btn, "سجّل إنه خرج", function () { tripMsg = ""; setOuting(m.id, tid, todayStr()); });
+          });
+          box.appendChild(h("div", { class: "arow" }, h("strong", { text: m.name }), pillFor(T), btn));
+        });
+        $("tripInfo").textContent = tripMsg || (list.length ? "خرج " + wentCount + " من " + list.length + " معاهم كارت " + T.name + "." : "");
+        if (!list.length) box.appendChild(h("div", { class: "empty", text: "مفيش حد معاه كارت " + T.name + " دلوقتي." }));
+      }
+
+      /* ---------- إعدادات الكروت ---------- */
+      function renderCards() {
+        var box = $("cardSettings");
+        box.textContent = "";
+        if (mode !== "shared") return;
+        tiers().forEach(function (t, i) {
+          var panel = h("div", { class: "panel cardset" });
+          panel.style.setProperty("--c", t.color);
+          var nm = h("input", { type: "text", value: t.name });
+          var ds = h("input", { type: "number", min: "0", max: "100", value: String(t.discount), inputmode: "numeric" });
+          var rw = h("input", { type: "text", value: t.reward });
+          nm.addEventListener("change", function () { if (nm.value.trim()) { t.name = nm.value.trim(); persistLadder(); render(); } });
+          ds.addEventListener("change", function () { t.discount = Math.max(0, Math.min(100, parseInt(ds.value, 10) || 0)); ds.value = String(t.discount); persistLadder(); render(); });
+          rw.addEventListener("change", function () { t.reward = rw.value.trim(); persistLadder(); });
+          panel.appendChild(h("h2", { text: "الكارت " + (i + 1) + (i === 0 ? " (البداية)" : "") }));
+          panel.appendChild(h("div", { class: "grid" },
+            h("label", {}, document.createTextNode("الاسم"), nm),
+            h("label", {}, document.createTextNode("الخصم %"), ds)));
+          panel.appendChild(h("label", { class: "muted", style: "display:block;margin-top:8px" }, document.createTextNode("المكافأة"), rw));
+          if (i > 0) {
+            panel.appendChild(h("div", { class: "muted", style: "margin-top:8px", text: "الشروط للوصول لهذا الكارت:" }));
+            var grid = h("div", { class: "grid" });
+            TYPES.forEach(function (ty) {
+              var inp = h("input", { type: "number", min: "0", max: "50", value: String(t.req[ty[0]] || 0), inputmode: "numeric" });
+              inp.addEventListener("change", function () { t.req[ty[0]] = Math.max(0, parseInt(inp.value, 10) || 0); inp.value = String(t.req[ty[0]]); persistLadder(); syncAll(); render(); });
+              grid.appendChild(h("label", {}, document.createTextNode(ty[1]), inp));
+            });
+            panel.appendChild(grid);
+            if (i === tiers().length - 1) panel.appendChild(h("div", { class: "muted", style: "margin-top:6px", text: "نفس الشروط دي هي شروط الحفاظ على الكارت." }));
+          }
+          box.appendChild(panel);
+        });
+        var w = $("winInput");
+        if (document.activeElement !== w) w.value = String(state.ladder.window);
+      }
+      $("winInput").addEventListener("change", function () {
+        state.ladder.window = Math.max(1, Math.min(26, parseInt(this.value, 10) || 8));
+        this.value = String(state.ladder.window);
+        persistLadder(); syncAll(); render();
+      });
+
+      /* ---------- نسخة احتياطية ---------- */
+      var msg = $("backupMsg"), bbox = $("backupBox");
+      $("exportBtn").addEventListener("click", function () {
+        var data = {
+          ladder: state.ladder,
+          members: state.members.map(function (m) { return { id: m.id, name: m.name, tier: m.tier }; }),
+          priv: state.priv
+        };
+        var json = JSON.stringify(data);
+        bbox.value = json;
+        msg.textContent = "النسخة جاهزة في المربع، وكمان اتحملت كملف.";
+        try {
+          var blob = new Blob([json], { type: "application/json" });
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "youth-cards-backup-" + todayStr() + ".json";
+          document.body.appendChild(a); a.click(); a.remove();
+        } catch (e) { }
+      });
+      $("importBtn").addEventListener("click", async function () {
+        var s;
+        try { s = JSON.parse(bbox.value); if (!s || !Array.isArray(s.members)) throw new Error("bad"); }
+        catch (e) { msg.textContent = "النص ده مش نسخة صحيحة. اتأكد إنك نسخته كامل."; return; }
+        if (mode !== "shared") { msg.textContent = "لازم تدخل كأدمن الأول."; return; }
+        try {
+          msg.textContent = "بيرفع البيانات...";
+          if (s.ladder) await dbRef.doc("config/ladder").set(clone(normLadder(s.ladder)));
+          for (var i = 0; i < s.members.length; i++) {
+            var m = s.members[i], id = m.id || uid();
+            await dbRef.doc("members/" + id).set({ name: String(m.name || ""), tier: m.tier || "master" });
+            var p = s.priv && s.priv[id];
+            if (p) await dbRef.doc("private/" + id).set({ phone: String(p.phone || ""), birthday: String(p.birthday || ""), base: typeof p.base === "number" ? p.base : 0, ev: p.ev || {}, outings: p.outings || {} }, { merge: true });
+          }
+          msg.textContent = "تم: " + s.members.length + " شخص.";
+        } catch (e) { msg.textContent = "حصلت مشكلة أثناء الرفع. جرّب تاني."; }
+      });
+
+      /* ---------- render ---------- */
+      function render() {
+        renderTiles();
+        renderList();
+        renderBirthdays();
+        if (mode === "shared") {
+          var ns = $("newTier");
+          if (document.activeElement !== ns) fillTierSelect(ns, ns.value);
+          if (activeTab === "att") renderAtt();
+          if (activeTab === "trips") renderTrips();
+          if (activeTab === "cards" && !$("tab-cards").contains(document.activeElement)) renderCards();
+          if (openId) renderModalDyn();
+        }
+      }
+
+      initAttendanceControls();
+      setMode("readonly");
+      render();
+      initShared();
+    })();
+  </script>
+</body>
+
+</html>

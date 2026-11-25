@@ -1,0 +1,12 @@
+rules_version = '2';
+
+// Sma2ien - سمائيين
+// Members' names and card levels are NOT public.
+// Everything requires the admin to be signed in.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
