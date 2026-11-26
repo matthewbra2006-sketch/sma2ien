@@ -1,12 +1,23 @@
 rules_version = '2';
 
 // Sma2ien - سمائيين
-// Members' names and card levels are NOT public.
-// Everything requires the admin to be signed in.
+// One admin account (the ADMIN_EMAIL constant in index.html).
+// If that email ever changes in index.html, change it here too.
+//
+// Only the signed-in admin can read or write anything.
+// This intentionally closes the old public board: logged-out visitors
+// used to see every member's name and card level. After publishing these
+// rules the list loads only after the admin signs in.
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+          && request.auth.token.email == 'admin@sma2ien.com';
+    }
+
     match /{document=**} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
   }
 }
