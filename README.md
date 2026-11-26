@@ -30,7 +30,7 @@ A gamified attendance and encouragement system for a university youth meeting. E
 
 ## Privacy note
 
-The first version of this site let anyone with the link read the full list of names and card levels without signing in. The `firestore.rules` file in this repo closes that: every read and write now requires the admin to be signed in. After publishing these rules, the list only loads after logging in, which is the intended behavior. People's names should not be public.
+The first version of this site let anyone with the link read the full list of names and card levels without signing in. The `firestore.rules` file in this repo restricts all reads and writes to the signed-in admin account. People's names should not be public.
 
 ## Passwords
 
